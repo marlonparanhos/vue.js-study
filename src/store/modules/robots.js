@@ -33,7 +33,7 @@ export default {
     cartSaleItems(state) {
       return state.cart.filter(item => item.head.onSale);
     },
-    foo(state) {
+    robotsFoo(state) {
       return "robots-getter/${state.foo}";
     }
   }

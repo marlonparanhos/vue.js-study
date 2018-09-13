@@ -11,7 +11,7 @@ export default {
     }
   },
   getters: {
-    foo(state) {
+    usersFoo(state) {
       return "users-getter/${state.foo}";
     }
   },
