@@ -1,9 +1,16 @@
 <template>
   <div class="part" :class="position">
-    <img @click="showPartInfo()" :src="selectedPart.src" title="arm"/>
+    <router-link :to="{
+      name: 'Parts',
+      params: {
+        id: this.selectedPart.id,
+        partType: this.selectedPart.type,
+      }}">
+    <img :src="selectedPart.src" title="arm"/>
+    </router-link>
     <button @click="selectPreviousPart()" class="prev-selector"></button>
     <button @click="selectNextPart()" class="next-selector"></button>
-    <span class="sale" v-show="selectedPart.onSale">Sale!</span>
+    <span v-pin:position.bottom.left class="sale" v-show="selectedPart.onSale">Sale!</span>
   </div>
 </template>
 
@@ -11,6 +18,8 @@
 // import availableParts from "../data/parts";
 
 // const parts = availableParts.heads;
+
+// import pinDirective from "../shared/pin-directive";
 
 function getPreviousValidIndex(index, length) {
   const deprecatedIndex = index - 1;
@@ -23,6 +32,7 @@ function getNextValidIndex(index, length) {
 }
 
 export default {
+  // directives: { pin: pinDirective },
   props: {
     parts: {
       type: Array,
@@ -88,9 +98,10 @@ export default {
   cursor: pointer;
 }
 .sale {
-  position: absolute;
+  /* position: absolute;
   bottom: 5px;
-  right: 5px;
+  right: 5px; */
+
   color: white;
   background-color: red;
   padding: 3px;
